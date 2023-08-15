@@ -8,30 +8,26 @@ const Map = () => {
   const isMobile = useMediaQuery('(min-width:600px)');
 
   const coordinates = {lat: 0, long: 0 };
+  const defaultProps = {
+    center: {
+      lat: 10.99835602,
+      lng: 77.01502627
+    },
+    zoom: 11
+  };
 
   return (
     <>
-      <div style={{height: '500px', width: '500px'}}>
+      <div style={{height: '100vh', width: '100%'}}>
         <GoogleMapReact 
           bootstrapURLKeys={{key: 'AIzaSyBKlTIRa06tO_lXSCt4N0IiT4ubn1N-ICE'}}
-          defaultCenter={coordinates}
-          center={coordinates}
-          defaultZoom={14}
-          margin={[50, 50, 50, 50]}
-          options={''}
-          onChange={''}
-          onChildClick={''}
+          defaultCenter={defaultProps.center}
+          defaultZoom={defaultProps.zoom}
         >
         </GoogleMapReact>
-    </div>
-    <div>
-      <h1>hi</h1>
-    </div>
+      </div>
   </>
-
-
-    
-  )
+  );
 }
 
 export default Map
