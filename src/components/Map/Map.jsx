@@ -10,8 +10,8 @@ const Map = () => {
   const coordinates = {lat: 0, long: 0 };
   const defaultProps = {
     center: {
-      lat: 10.99835602,
-      lng: 77.01502627
+      lat: 43.463369,
+      lng: -79.692019
     },
     zoom: 11
   };
