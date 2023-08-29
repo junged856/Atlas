@@ -11,7 +11,8 @@ const App = () => {
     const [places, setPlaces] = useState([]);
 
     const [coordinates, setCoordinates] = useState({});
-    const [bounds, setBounds] = useState(null);
+    const [bounds, setBounds] = useState({sw: 0, ne: 0});
+    // ****** TO-DO: BOUNDS SHOULD NOT BE HARDCODED *******
 
     // sets initial map position to current location
     useEffect(() => {
@@ -22,14 +23,14 @@ const App = () => {
 
 
     // // gets all places within current map view
-    // useEffect(() => {
-    //     console.log(coordinates, bounds);
-    //     getPlacesData(bounds)
-    //         .then((data) => {
-    //             console.log(data);
-    //             setPlaces(data);
-    //         });
-    // }, [coordinates, bounds]);
+    useEffect(() => {
+        console.log(coordinates, bounds);
+        getPlacesData(bounds.sw, bounds.ne)
+            .then((data) => {
+                console.log(data);
+                setPlaces(data);
+            });
+    }, [coordinates, bounds]);
 
     return (
         <>
@@ -37,7 +38,7 @@ const App = () => {
             <Header />
             <Grid container spacing={3} style={{width: '100%'}}>
                 <Grid item xs={12} md={4}>
-                    <List />
+                    <List places={places} />
                 </Grid>
                 <Grid item xs={12} md={8}>
                     <Map 

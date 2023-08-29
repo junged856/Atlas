@@ -7,6 +7,7 @@ const Map = ({ setCoordinates, setBounds, coordinates }) => {
   const classes = useStyles();
   const isMobile = useMediaQuery('(min-width:600px)');
 
+  // dummy vals
   const defaultProps = {
     center: {
       lat: 35.7101033,
