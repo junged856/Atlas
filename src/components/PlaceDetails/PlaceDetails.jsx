@@ -5,6 +5,7 @@ import PhoneIcon from '@material-ui/icons/Phone'
 import Rating from '@material-ui/lab/Rating'
 
 import useStyles from './styles'
+import { LocationOn, Phone } from '@material-ui/icons'
 
 const PlaceDetails = ({ place }) => {
   const classes = useStyles();
@@ -18,6 +19,32 @@ const PlaceDetails = ({ place }) => {
       />
       <CardContent>
         <Typography gutterBottom variant='h5'>{place.name}</Typography>
+        <Box display='flex' justifyContent='space-between'>
+          <Typography variant="subtitle1">Price</Typography>
+          <Typography gutterBottom variant='subtitle1'>{place.price_level}</Typography>
+        </Box>
+        <Box display='flex' justifyContent='space-between'>
+          <Typography variant="subtitle1">Rating</Typography>
+          <Typography gutterBottom variant='subtitle1'>{place.ranking}</Typography>
+        </Box>
+        {place.cuisine?.map(({name}) => (
+          <Chip key={name} size='small' label={name} className={classes.chip} />
+        ))}
+        {place?.address && (
+          <Typography gutterBottom variant="body2" color="textSecondary" className={classes.subtitle}>
+            <LocationOnIcon /> {place.address}
+          </Typography>
+        )}
+        {place?.phone && (
+          <Typography gutterBottom variant="body2" color="textSecondary" className={classes.subtitle}>
+            <PhoneIcon /> {place.phone}
+          </Typography>
+        )}
+        {/* WHAT IF PLACE WEB URL OR WEBSITE PROPS DONT EXIST? */}
+        <CardActions>
+          <Button size="small" color="primary" onClick={() => window.open(place.web_url, '_blank')}>Trip Advisor</Button>
+          <Button size="small" color="primary" onClick={() => window.open(place.website, '_blank')}>Website</Button>
+        </CardActions>
       </CardContent>
     </Card>
   )
